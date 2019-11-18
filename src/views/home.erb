@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>SW & Arquitecture Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo">
+        <style>
+          body,h1,h2,h3 {
+            font-family: 'Boogaloo', serif;
+          }
+        </style>
+  </head>
+  <body class='container'>
+    </br>
+    <div class="panel panel-default" >
+      <div class="panel-heading" style"text-align: center">
+        <h1>The Mighty SW & Arquitecture Quiz</h1>
+      </div>
+    </div>
+    <form action='/quiz' method='post'>
+      <div class="form-group">
+        <label for="question_number"><h3>Select the number of questions</h3></label>
+        <!--<select class="form-control" id="question_number">-->
+        <!--  <option value"1">1</option>-->
+        <!--  <option value"2">2</option>-->
+          <!--<% (1..10).to_a.each do |value| %>-->
+          <!--  <option value="<%=value%>"><%=value%></option>-->
+          <!--<% end %>-->
+        <!--</select>-->
+        <input class="form-control" type='number' name='question_number' value='5' min='1' max='10' required />
+      </div>
+      <div style="text-align: center">
+        <button type='submit' class='btn btn-primary'><h2>Lets Start!</h2></button>
+      </div>
+    </form>
+  </body>
+</html>
