@@ -16,25 +16,51 @@
   <body class='container'>
     </br>
     <div class="panel panel-default" >
-      <div class="panel-heading" style"text-align: center">
-        <h1>The Mighty SW & Arquitecture Quiz</h1>
+      <div class="panel-heading" style="text-align: center">
+        <h1 class="text-success">The Mighty SW & Arquitecture Quiz</h1>
       </div>
+    </div>
+    <div class="text-center">
+      <img src="images/microservices.png" class="img-fluid" alt="Microservices image">
     </div>
     <form action='/quiz' method='post'>
       <div class="form-group">
-        <label for="question_number"><h3>Select the number of questions</h3></label>
-        <!--<select class="form-control" id="question_number">-->
-        <!--  <option value"1">1</option>-->
-        <!--  <option value"2">2</option>-->
-          <!--<% (1..10).to_a.each do |value| %>-->
-          <!--  <option value="<%=value%>"><%=value%></option>-->
-          <!--<% end %>-->
-        <!--</select>-->
-        <input class="form-control" type='number' name='question_number' value='5' min='1' max='10' required />
+        <h3>
+          <label for="question_number">Select the number of questions</h3></label>
+          <select class="form-control" id="question_number" name="question_number">
+            <% (1..10).to_a.each do |value| %>
+              <option value="<%=value%>"><%=value%></option>
+            <% end %>
+          </select>
+        </h3>
       </div>
       <div style="text-align: center">
-        <button type='submit' class='btn btn-primary'><h2>Lets Start!</h2></button>
+        <button type='submit' class='btn btn-success'><h2>Lets Start!</h2></button>
       </div>
     </form>
+    <form action='/score' method='post'>
+      <div>
+        <h3>Or probably check the current scoreboard ;)</h3>
+        <div style="text-align: center">
+          <button type='submit' class='btn btn-secondary'><h2>Scoreboard</h2></button>
+        </div>
+      </div>
+    </form>
+    <div class="text-info">
+      <h3>Developed By</h3>
+      <h3>
+      <ul>
+        <li>Ethan</li>
+        <li>Marco</li>
+        <li>Servio</li>
+      </ul>
+      </h3>
+      <h3>With Help from</h3>
+      <h3>
+      <ul>
+        <li>Professor Ariel</li>
+      </ul>
+      </h3>
+    </div>
   </body>
 </html>
