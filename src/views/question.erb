@@ -1,0 +1,15 @@
+<meta>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</meta>
+
+<%=question%>
+<form action="/validate" method="post">
+    <% options.each do |value| %>
+    <% if correct_answer == value%>
+      <input type="submit" id="answer" name="answer" value="<%=value%>" class="btn btn-primary"/>
+    <% else%>
+      <input type="submit" id="answer" name="answer" value="<%=value%>"/>
+    <% end %>
+    <% end %>
+</form>
+

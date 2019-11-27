@@ -1,3 +1,4 @@
+require 'json'
 require 'faraday'
 
 QUESTIONS_OBTAINTION_URL = 'https://a00jkeefm6.execute-api.us-west-2.amazonaws.com/default/questions_obtaintion'
@@ -5,8 +6,6 @@ QUESTIONS_VERIFIER_URL = 'https://tvtjut8qye.execute-api.us-west-2.amazonaws.com
 SCORES_URL = 'https://ijee1b1qh1.execute-api.us-west-2.amazonaws.com/default/score_handler'
 
 class Microservices
-  
-  include Singleton
   
   def initialize
     @questions_conn = Faraday.new(url: QUESTIONS_OBTAINTION_URL, headers: {'Content-Type': 'application/json'})
@@ -39,7 +38,7 @@ class Microservices
   def validate_question(question_id, answer)
     question_info = {answers: [{ID: question_id, answer: answer}]}
     score = post_to_url(@questions_verifier_conn, "j", question_info)
-    @user_score += score
+    @user_score += score["score"].to_i
     score
   end
   
@@ -50,6 +49,10 @@ class Microservices
 
   def get_scores
     get_from_url(@scores_conn, "j", {})
+  end
+  
+  def questions_array
+    @questions_array
   end
     
 end

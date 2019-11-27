@@ -17,25 +17,27 @@ def parse_questions(body)
   end
 end
 
-def validate_questions(raw_questions)
-  data = parse_questions(raw_questions)
+def validate_questions(raw_question)
+  data = parse_questions(raw_question)
   if not data or not data.key?("answers")
-    return {score: 0}
+    return {score: 0, answer: nil}
   end
-  questions = data["answers"]
+  question = data["answers"]
   result = 0
+  answer = nil
   response = DYNAMODB.scan(table_name: TABLE_NAME).items
-  questions.each do |question|
-    if question.key?("ID") and question.key?("answer")
-      response.each do |item|
-        if item['ID'].to_i == question['ID'].to_i and item['answer'].strip == question['answer'].strip
-          result += 1
-          break
+  if question.key?("ID") and question.key?("answer")
+    response.each do |item|
+      if item['ID'].to_i == question['ID'].to_i
+        answer = item['answer'].strip
+        if item['answer'].strip == question['answer'].strip
+          result = 1
         end
+        break
       end
     end
   end
-  {score: result}
+  {score: result, answer: answer}
 end
 
 def make_response(status, body)
