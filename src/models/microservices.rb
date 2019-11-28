@@ -10,6 +10,9 @@ class Microservices
   
   include Singleton
   
+  attr_reader :questions_array
+  attr_reader :user_score
+  
   def initialize
     @questions_conn = Faraday.new(url: QUESTIONS_OBTAINTION_URL, headers: {'Content-Type': 'application/json'})
     @questions_verifier_conn = Faraday.new(url: QUESTIONS_VERIFIER_URL, headers: {'Content-Type': 'application/json'})
@@ -58,13 +61,5 @@ class Microservices
     scores.sort! {|a, b| a['score'] <=> b['score']}
     scores.reverse!
   end
-  
-  def questions_array
-    @questions_array
-  end
-  
-  def user_score
-    @user_score
-  end
-    
+
 end

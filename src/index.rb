@@ -23,7 +23,9 @@ get '/quiz' do
       :user_answer => nil
     }
   else
-    erb :add_user
+    erb :add_user, :locals => {
+      :score => MICROSERVICES.user_score
+    }
   end
 end
 

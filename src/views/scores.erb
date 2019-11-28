@@ -1,23 +1,50 @@
-<meta>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</meta>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>SW & Arquitecture Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo">
+        <style>
+          body,h1,h2,h3 {
+            font-family: 'Boogaloo', serif;
+          }
+        </style>
+  </head>
+  <body class='container'>
+    <div class="panel panel-default" >
+      <div class="panel-heading" style="text-align: center">
+        <h1 class="text-success">Scoreboard</h1>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <h1>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"><h3>#</h3></th>
+            <th scope="col"><h3>User Name</h3></th>
+            <th scope="col"><h3>Score</h3></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% scores[0..9].each_with_index do |value, num| %>
+            <tr>
+              <th scope="row"><h3><%=num+1%></h3></th>
+              <td><h3><%=value["user_name"]%></h3></td>
+              <td><h3><%=value["score"]%></h3></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </h1>
+    </table>
+    <form action='/' method='get'>
+      <div style="text-align: center">
+        <button type='submit' class='btn btn-success'><h4>Ir al Menu</h4></button>
+      </div>
+    </form>
+  </body>
+</html>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">User Name</th>
-      <th scope="col">Score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% scores[0..9].each_with_index do |value, num| %>
-      <tr>
-        <th scope="row"><%=num+1%></th>
-        <td><%=value["user_name"]%></td>
-        <td><%=value["score"]%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
   

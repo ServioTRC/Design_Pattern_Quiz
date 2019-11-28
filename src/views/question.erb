@@ -1,22 +1,52 @@
-<meta>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</meta>
-
-<%=question%>
-<form action="/quiz" method="post">
-    <% options.each do |value| %>
-    <% if correct_answer == value %>
-      <input type="submit" id="answer" name="answer" value="<%=value%>" class="btn btn-primary" disabled/>
-    <% elsif user_answer %>
-      <input type="submit" id="answer" name="answer" value="<%=value%>" disabled/>
-    <% else %>
-      <input type="submit" id="answer" name="answer" value="<%=value%>"/>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>SW & Arquitecture Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo">
+        <style>
+          body,h1,h2,h3,h4 {
+            font-family: 'Boogaloo', serif;
+          }
+        </style>
+  </head>
+  <body class='container'>
+    <div class="panel panel-default" >
+      <div class="panel-heading" style="text-align: center">
+        <h1 class="text-success">Pregunta:</h1>
+      </div>
+    </div>
+    <h2 style="text-align: center">
+      <%=question%>
+    </h2>
+    <br />
+    <br />
+    <form action="/quiz" method="post" style="text-align: center">
+      <h3>
+        <% options.each do |value| %>
+          <% if correct_answer == value%>
+            <input type="submit" id="answer" name="answer" value="<%=value%>" class="btn btn-success" disabled/>
+          <% elsif user_answer == value %>
+            <input type="submit" id="answer" name="answer" value="<%=value%>" class="btn btn-danger" disabled/>
+          <% elsif user_answer %>
+            <input type="submit" id="answer" name="answer" value="<%=value%>" disabled/>
+          <% else %>
+            <input type="submit" id="answer" name="answer" value="<%=value%>"/>
+          <% end %>
+        <% end %>
+      </h3>
+    </form>
+    <br />
+    <br />
+    <h3>
+    <% if user_answer %>
+    <form action="/quiz" method="get" style="text-align: center">
+        <input type="submit" id="answer" name="answer" value="Siguiente Pregunta"/>
+    </form>
     <% end %>
-    <% end %>
-</form>
-
-<% if user_answer %>
-<form action="/quiz" method="get">
-    <input type="submit" id="answer" name="answer" value="Siguiente Pregunta"/>
-</form>
-<% end %>
+    </h3>
+  </body>
+</html>

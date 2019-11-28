@@ -1,16 +1,47 @@
-<meta>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</meta>
-
-<form action='/update_score' method='post'>
-  <div class="form-group">
-    <h3>
-      <label for="name">Ingrese su nombre</label>
-    </h3>
-      <input class="form-control" type='text' id="name" name="name"/>
-    </h3>
-  </div>
-  <div style="text-align: center">
-    <button type='submit' class='btn btn-success'><h4>Ingrese su Nombre</h4></button>
-  </div>
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>SW & Arquitecture Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo">
+        <style>
+          body,h1,h2,h3,h4 {
+            font-family: 'Boogaloo', serif;
+          }
+        </style>
+  </head>
+  <body class='container'>
+    <div class="panel panel-default" >
+      <div class="panel panel-default" >
+        <div class="panel-heading" style="text-align: center">
+          <h1 class="text-success">Fin del Quiz!!!</h1>
+        </div>
+      </div>
+      <form action='/update_score' method='post'>
+        <div class="form-group">
+          <h2>
+            <label for="name">Su puntaje es de: <%=score%></label>
+          </h2>
+          
+          <h3>
+            <label for="name">Ingrese su nombre para el Scoreboard</label>
+          </h3>
+          <input class="form-control" type='text' id="name" name="name"/>
+        </div>
+        <div style="text-align: center">
+          <button type='submit' class='btn btn-success'><h4>Guardar Puntaje</h4></button>
+        </div>
+      </form>
+      <br />
+      <br /> 
+      <form action='/' method='get'>
+        <div style="text-align: center">
+          <button type='submit' class='btn btn-success'><h4>Ir al Menu</h4></button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
