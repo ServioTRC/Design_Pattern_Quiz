@@ -1,11 +1,14 @@
 require 'json'
 require 'faraday'
+require 'singleton'
 
 QUESTIONS_OBTAINTION_URL = 'https://a00jkeefm6.execute-api.us-west-2.amazonaws.com/default/questions_obtaintion'
 QUESTIONS_VERIFIER_URL = 'https://tvtjut8qye.execute-api.us-west-2.amazonaws.com/default/questions_verifier'
 SCORES_URL = 'https://ijee1b1qh1.execute-api.us-west-2.amazonaws.com/default/score_handler'
 
 class Microservices
+  
+  include Singleton
   
   def initialize
     @questions_conn = Faraday.new(url: QUESTIONS_OBTAINTION_URL, headers: {'Content-Type': 'application/json'})
@@ -36,23 +39,32 @@ class Microservices
   end
   
   def validate_question(question_id, answer)
-    question_info = {answers: [{ID: question_id, answer: answer}]}
+    question_info = {ID: question_id, answer: answer}
     score = post_to_url(@questions_verifier_conn, "j", question_info)
     @user_score += score["score"].to_i
-    score
+    score["answer"]
   end
   
-  def post_score(user_name, score)
-    user_info = {user_name: user_name, score: score}
+  def post_score(user_name)
+    user_info = {user_name: user_name, score: @user_score}
+    @user_score = 0
     post_to_url(@scores_conn, "j", user_info)
   end
 
   def get_scores
-    get_from_url(@scores_conn, "j", {})
+    scores = get_from_url(@scores_conn, "j", {})
+    scores.sort! {|a, b| a['date_time'] <=> b['date_time']}
+    scores.reverse!
+    scores.sort! {|a, b| a['score'] <=> b['score']}
+    scores.reverse!
   end
   
   def questions_array
     @questions_array
+  end
+  
+  def user_score
+    @user_score
   end
     
 end

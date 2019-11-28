@@ -3,13 +3,20 @@
 </meta>
 
 <%=question%>
-<form action="/validate" method="post">
+<form action="/quiz" method="post">
     <% options.each do |value| %>
-    <% if correct_answer == value%>
-      <input type="submit" id="answer" name="answer" value="<%=value%>" class="btn btn-primary"/>
-    <% else%>
+    <% if correct_answer == value %>
+      <input type="submit" id="answer" name="answer" value="<%=value%>" class="btn btn-primary" disabled/>
+    <% elsif user_answer %>
+      <input type="submit" id="answer" name="answer" value="<%=value%>" disabled/>
+    <% else %>
       <input type="submit" id="answer" name="answer" value="<%=value%>"/>
     <% end %>
     <% end %>
 </form>
 
+<% if user_answer %>
+<form action="/quiz" method="get">
+    <input type="submit" id="answer" name="answer" value="Siguiente Pregunta"/>
+</form>
+<% end %>

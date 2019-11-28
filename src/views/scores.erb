@@ -1,0 +1,23 @@
+<meta>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</meta>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% scores[0..9].each_with_index do |value, num| %>
+      <tr>
+        <th scope="row"><%=num+1%></th>
+        <td><%=value["user_name"]%></td>
+        <td><%=value["score"]%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  

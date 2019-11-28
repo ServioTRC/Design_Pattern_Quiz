@@ -1,18 +1,19 @@
 require 'sinatra'
 require './models/microservices'
 
-MICROSERVICES = Microservices.new
+MICROSERVICES = Microservices.instance
 
 get '/' do
   erb :home
 end
 
-post '/quiz' do
+post '/quiz_generation' do
   MICROSERVICES.get_questions(params['question_number'].to_i)
   redirect '/quiz'
 end
 
 get '/quiz' do
+  p MICROSERVICES.questions_array
   if MICROSERVICES.questions_array.length > 0
     question = MICROSERVICES.questions_array.last()
     erb :question, :locals => {
@@ -22,14 +23,13 @@ get '/quiz' do
       :user_answer => nil
     }
   else
-    erb :empty
+    erb :add_user
   end
 end
 
-post '/validate' do
+post '/quiz' do
   question = MICROSERVICES.questions_array.pop()
-  correct_answer = MICROSERVICES.validate_question(question["ID"], params['answer'])
-  p correct_answer
+  correct_answer = MICROSERVICES.validate_question(question["id"], params['answer'])
   erb :question, :locals => {
     :question => question["question"], 
     :options => question["options"],
@@ -39,5 +39,14 @@ post '/validate' do
 end
 
 get '/score' do
-    "pagina de scores"
+  erb :scores, :locals => {
+    :scores => MICROSERVICES.get_scores
+  }
+end
+
+post '/update_score' do
+  if params['name']
+    MICROSERVICES.post_score(params['name'])
+  end
+  redirect '/score'
 end
