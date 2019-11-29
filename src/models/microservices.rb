@@ -74,7 +74,7 @@ class Microservices
   def post_score(user_name)
     user_info = {user_name: user_name, score: @user_score}
     @user_score = 0
-    post_to_url(@scores_conn, "j", user_info)
+    post_to_url(@scores_conn, SCORES_KEY, user_info)
   end
   
   # Retrieves the scores from the DB
