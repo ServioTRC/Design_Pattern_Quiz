@@ -1,10 +1,13 @@
 require 'json'
 require 'aws-sdk-dynamodb'
 
-
+# Object for using the DynamoDB in AWS
 DYNAMODB = Aws::DynamoDB::Client.new
+
+# Main Table Name used by this microservices
 TABLE_NAME = 'Questions_Arqui'
 
+# Function for parsing the information obtained by the body
 def parse_questions(body)
   if body
     begin
@@ -17,6 +20,7 @@ def parse_questions(body)
   end
 end
 
+# Function for checking if the given question and 
 def validate_questions(raw_question)
   data = parse_questions(raw_question)
   if not data or not data.key?("answers")
@@ -40,6 +44,7 @@ def validate_questions(raw_question)
   {score: result, answer: answer}
 end
 
+# Function for making the HTTP response with status and body
 def make_response(status, body)
   {
     statusCode: status,
@@ -47,18 +52,22 @@ def make_response(status, body)
   }
 end
 
+# Function for returning a HTTP response for a bad response
 def handle_bad_method(method)
   make_response(405, {message: "Method not supported: #{method}"})
 end
 
+# Function for sending a validation from the POST HTTP response
 def handle_post(body)
   make_response(200, validate_questions(body))
 end
 
+# Function for handling an invalid request
 def handle_bad_request
   make_response(400, 'Bad request (invalid input)')
 end
 
+# Core AWS Lambda Function
 def lambda_handler(event:, context:)
   method = event['httpMethod']
   if method == 'POST'

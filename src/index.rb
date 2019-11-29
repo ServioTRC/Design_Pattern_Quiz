@@ -1,6 +1,7 @@
 require 'sinatra'
 require './models/microservices'
 
+# Singleton instance for running the microservices
 MICROSERVICES = Microservices.instance
 
 get '/' do
