@@ -19,7 +19,7 @@ get '/quiz' do
     question = MICROSERVICES.questions_array.last()
     erb :question, :locals => {
       :question => question["question"],
-      :options => question["options"],
+      :options => question["options"].shuffle,
       :correct_answer => nil,
       :user_answer => nil
     }
