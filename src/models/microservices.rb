@@ -1,9 +1,11 @@
-# Final Project: Quiz Application with Microservices
-# Date: 03-Dec-2019
-# Authors: A01371719 Servio Tulio Reyes Castillo
-#          A01378840 Marco Antonio Rios Gutierrez
-#          A01379696 Ethan Isaac Bautista Trevizo
-
+#         Final Project:
+#             Quiz Application with Microservices
+#         Date:
+#             03-Dec-2019
+#         Authors:
+#             A01371719 Servio Tulio Reyes Castillo
+#             A01378840 Marco Antonio Rios Gutierrez
+#             A01379696 Ethan Isaac Bautista Trevizo
 require 'json'
 require 'faraday'
 require 'singleton'
