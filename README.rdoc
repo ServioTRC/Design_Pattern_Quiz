@@ -12,14 +12,14 @@ for a quiz on Design Patterns and Antipatterns using microservices,
 The directory structure for the application and its documentation is as follows:
 
     Design_Pattern_Quiz/
-          â”œâ”€ doc/                        Folder produced by RDoc.
-          â”œâ”€ img/                        Folder for the documentation's image files.
-          â””â”€ src/                        Folder for the application's source code.
-               â”œâ”€ public/                Folder for the server's public documents.
-               â”‚       â””â”€ images/      Folder for the application's images.
-               â”œâ”€ models/                Folder for the application's models.
-               â””â”€ views/                 Folder for the application's views (ERB files).
-               â””â”€ functions/             Folder for the application's microservices functions.
+        doc/                        Folder produced by RDoc.
+        img/                        Folder for the documentation's image files.
+        src/                        Folder for the application's source code.
+            public/                 Folder for the server's public documents.
+                images/             Folder for the application's images.
+            models/                 Folder for the application's models.
+            views/                  Folder for the application's views (ERB files).
+            functions/              Folder for the application's microservices functions.
 
 
 == How to install and run the application and all the microservices
@@ -57,6 +57,12 @@ rdoc-image:img/scenarios.png
 - <b>Domain-Specific Language</b>: The +index.rb+ file consists of a series of Sinatra _routes_. Sinatra is a DSL for creating web applications in Ruby.
 - <b>Model-View-Controller</b>: The application follows the classical web implementation of the MVC architectural pattern. The models (+.rb+ files) and views (+.erb+ files) are stored in the corresponding +models+ and +views+ directory. The controller is contained in +index.rb+ file.
 - <b>Singleton Pattern</b>: The +index.rb+ file calls for a single instance of the +microservices.rb+ file which itself includes the +Singleton+ module.
+
+== Authors
+
+* *A01378840* <em>Marco Antonio Ríos Gutiérrez</em>
+* *A01378840* <em>Marco Antonio Rios Gutierrez</em>
+* *A01371719* <em>Servio Tulio Reyes Castillo</em>
 
 == Acknowledgments
 
